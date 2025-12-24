@@ -1,0 +1,38 @@
+[
+  {
+    "id": "DEMO-ETH-CASE-115",
+    "type": "case",
+    "module": "伦理法规",
+    "section": "案例分析题",
+    "number": 115,
+    "stem": "论述在跨文化疗愈服务中，如何避免“文化挪用”现象，确保尊重客户文化背景与伦理合规。",
+    "options": null,
+    "standardAnswer": "要点示例：以文化谦逊为核心；把客户视为文化专家；服务前系统学习并与社区/文化持有者合作；明确边界与许可；避免将神圣仪式工具化；在督导/伦理框架下持续反思与修正。",
+    "myAnswer": "",
+    "source": [
+      {
+        "file": "伦理题补充2.docx",
+        "page": null
+      }
+    ],
+    "updatedAt": ""
+  },
+  {
+    "id": "DEMO-ETH-MULTI-02",
+    "type": "multi",
+    "module": "伦理法规",
+    "section": "多项选择题",
+    "number": 2,
+    "stem": "下列哪些属于伦理守则要求的核心原则？（多选）",
+    "options": "A. 保密与隐私\\nB. 文化尊重\\nC. 夸大疗效\\nD. 知情同意",
+    "standardAnswer": "参考：A、B、D（C 不符合伦理）。",
+    "myAnswer": "",
+    "source": [
+      {
+        "file": "伦理与法规1-10答案.pdf",
+        "page": null
+      }
+    ],
+    "updatedAt": ""
+  }
+]

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>题目检索（原题 / 标准答案 / 我的答案）</title>
+  <style>
+    :root{--bg:#0b0d12;--card:#141824;--muted:#9aa4b2;--txt:#e6e8ee;--accent:#7aa2ff;--border:#232a3a;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",Arial;
+         background:linear-gradient(180deg,#0b0d12,#0b0d12 60%,#070910);color:var(--txt);}
+    header{position:sticky;top:0;background:rgba(11,13,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:5}
+    .wrap{max-width:1200px;margin:0 auto;padding:14px 16px}
+    h1{font-size:16px;margin:0 0 8px 0;color:#fff;font-weight:600}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    input[type="text"]{flex:1;min-width:260px;background:#0f1320;color:var(--txt);border:1px solid var(--border);
+      padding:10px 12px;border-radius:10px;outline:none}
+    select,button{background:#0f1320;color:var(--txt);border:1px solid var(--border);
+      padding:10px 12px;border-radius:10px;cursor:pointer}
+    button:hover{border-color:#33405b}
+    main{max-width:1200px;margin:0 auto;padding:16px;display:grid;grid-template-columns:1fr 2fr;gap:14px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
+    .muted{color:var(--muted);font-size:12px}
+    .list{max-height:70vh;overflow:auto;padding-right:4px}
+    .item{padding:10px 10px;border-radius:12px;border:1px solid transparent;cursor:pointer}
+    .item:hover{background:#101526;border-color:#253049}
+    .item.active{background:#101526;border-color:var(--accent)}
+    .badge{display:inline-block;font-size:11px;color:#dbe1ff;background:rgba(122,162,255,.14);
+      border:1px solid rgba(122,162,255,.35);padding:2px 8px;border-radius:999px;margin-right:6px}
+    .stem{white-space:pre-wrap;line-height:1.55}
+    .answer{white-space:pre-wrap;line-height:1.55;background:#0f1320;border:1px solid var(--border);
+      padding:10px 12px;border-radius:12px}
+    textarea{width:100%;min-height:160px;background:#0f1320;color:var(--txt);border:1px solid var(--border);
+      border-radius:12px;padding:10px 12px;resize:vertical}
+    .pill{display:inline-flex;gap:6px;align-items:center}
+    .pill small{color:var(--muted)}
+    .hr{height:1px;background:var(--border);margin:12px 0}
+    .k{color:#cbd5e1}
+    .hl{background:rgba(255,214,102,.18);border:1px solid rgba(255,214,102,.35);padding:0 2px;border-radius:4px}
+    @media (max-width: 980px){main{grid-template-columns:1fr} .list{max-height:40vh}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>题目检索：输入题干关键词 → 显示原题 / 标准答案 / 我的答案（本地保存）</h1>
+    <div class="row">
+      <input id="q" type="text" placeholder="输入/粘贴题目（支持模糊匹配）…" />
+      <select id="typeFilter">
+        <option value="">全部题型</option>
+        <option value="single">单选</option>
+        <option value="multi">多选</option>
+        <option value="short">简答</option>
+        <option value="case">案例</option>
+        <option value="practice">实操</option>
+      </select>
+      <select id="moduleFilter">
+        <option value="">全部模块</option>
+      </select>
+      <button id="exportBtn" title="导出我的答案">导出我的答案</button>
+      <button id="importBtn" title="导入我的答案">导入</button>
+      <input id="importFile" type="file" accept="application/json" style="display:none" />
+    </div>
+    <div class="row" style="margin-top:8px">
+      <span class="muted" id="stats">加载中…</span>
+      <span class="muted">提示：我的答案保存在浏览器 localStorage；建议定期“导出”备份。</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <div class="pill"><span class="k">结果列表</span><small id="resultCount"></small></div>
+    <div class="hr"></div>
+    <div class="list" id="list"></div>
+  </section>
+
+  <section class="card" id="detail">
+    <div class="muted">在左侧选择一道题查看详情</div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+<script src="./app.js"></script>
+</body>
+</html>
